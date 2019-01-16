@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvc4events", "MVC4Events\mvc4events.csproj", "{0411C378-4D1B-4EC3-868B-6A7E5EFCA8D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0411C378-4D1B-4EC3-868B-6A7E5EFCA8D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0411C378-4D1B-4EC3-868B-6A7E5EFCA8D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0411C378-4D1B-4EC3-868B-6A7E5EFCA8D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0411C378-4D1B-4EC3-868B-6A7E5EFCA8D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E4A2ECA-9C15-4A21-9C04-D171BAE873EE}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Lists of events";
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $.ajaxSetup(
+                {
+                    cache: true,
+                    success: function (result) {
+                        alert(1);
+                    }
+                }
+            );
+
+            var oTable = $('#tEvents').dataTable({
+                "oLanguage": {
+                    "sProcessing": "<div id='loading-ajax'><span style='display: table-cell; vertical-align: middle;'><img src='./images/ajax-loader.gif'/></span></div>"
+                },
+                "bProcessing": true,
+                'iDisplayLength': 5,
+                "aLengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                "bServerSide": true,
+                "sAjaxSource": '@Url.Action("getEvents", "Events")',
+                "sServerMethod": "POST",
+                "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                    var iDraw = oSettings.iDraw;
+                    oSettings.jqXHR = $.ajax({
+                        "dataType": 'json',
+                        "type": "POST",
+                        "url": sSource,
+                        "data": aoData,
+                        "success": function (msg) {                            
+                            msg.sEcho = iDraw;
+                            fnCallback(msg);
+                        }
+                    });
+                },
+                "aoColumns": [
+                    { "mData": "Title" },
+                    { "mData": "Technology" },
+                    { "mData": "Date" },
+                    {
+                        "mData": function (o) {
+                            return "<a target='_blank' href='http://" + o.URL + "' class='btn btn-default'>Register</a>";
+                        }
+                    }
+                ],
+            });
+
+        });
+
+
+    </script>
+}
+<h2>Events</h2>
+<div class="table-responsive">
+    <table id="tEvents" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td>Title</td>
+                <td>Technology</td>
+                <td>Date</td>
+                <td></td>
+            </tr>
+        </thead>
+    </table>
+</div>
