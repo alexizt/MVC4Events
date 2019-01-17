@@ -9,7 +9,7 @@ using System.Web.Configuration;
 using System.Web.Mvc;
 using Unconnected.Mvc.Outputcache;
 
-namespace MvcMovie.Controllers
+namespace mvc4events.Controllers
 {
     public class EventsController : Controller
     {
@@ -37,7 +37,8 @@ namespace MvcMovie.Controllers
         {
 
             sSearch = sSearch.ToLower(); // Force No case sensitive
-            List<Event> eventList = this._eventList.GetEvents().ToList();
+            //List<Event> eventList = this._eventList.GetEvents().ToList();
+            var eventList = this._eventList.GetEvents().AsQueryable();
 
             int totalRecord = eventList.Count();
             if (iDisplayLength == -1) { iDisplayLength = totalRecord; }
@@ -47,17 +48,17 @@ namespace MvcMovie.Controllers
             if (!string.IsNullOrEmpty(sSearch))
                 eventList = eventList.Where(x => x.Title.ToLower().Contains(sSearch)
                 || x.Technology.ToLower().Contains(sSearch)
-                ).ToList();
+                );
 
             int TotalDisplayRecords = eventList.Count();
 
-            eventList = eventList.OrderBy(x => x.Title).Skip(iDisplayStart).Take(iDisplayLength).ToList();            
+            eventList = eventList.OrderBy(x => x.Title).Skip(iDisplayStart).Take(iDisplayLength);
 
             var data = new {
                 sEcho = 0,
                 iTotalRecords = totalRecord,
                 iTotalDisplayRecords = TotalDisplayRecords,
-                aaData = eventList
+                aaData = eventList.ToList()
             };
 
             return Json(data);

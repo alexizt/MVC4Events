@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Lists of events (with OutputCache)";
+    ViewBag.Title = "Lists of events (with MemoryCache)";
 }
 
 @section scripts {
@@ -8,10 +8,7 @@
 
             $.ajaxSetup(
                 {
-                    cache: true,
-                    success: function (result) {
-                        alert(1);
-                    }
+                    cache: true
                 }
             );
 
@@ -23,21 +20,8 @@
                 'iDisplayLength': 5,
                 "aLengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
                 "bServerSide": true,
-                "sAjaxSource": '@Url.Action("getEvents", "Events")',
+                "sAjaxSource": '@Url.Action("getEvents", "EventsMemCache")',
                 "sServerMethod": "POST",
-                "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
-                    var iDraw = oSettings.iDraw;
-                    oSettings.jqXHR = $.ajax({
-                        "dataType": 'json',
-                        "type": "POST",
-                        "url": sSource,
-                        "data": aoData,
-                        "success": function (msg) {                            
-                            msg.sEcho = iDraw;
-                            fnCallback(msg);
-                        }
-                    });
-                },
                 "aoColumns": [
                     { "mData": "Title" },
                     { "mData": "Technology" },

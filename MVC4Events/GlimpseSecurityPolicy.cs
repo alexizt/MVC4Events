@@ -4,7 +4,7 @@
 using Glimpse.AspNet.Extensions;
 using Glimpse.Core.Extensibility;
 
-namespace MvcMovie
+namespace mvc4events
 {
     public class GlimpseSecurityPolicy:IRuntimePolicy
     {
